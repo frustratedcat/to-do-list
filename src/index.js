@@ -1,9 +1,8 @@
-'use strict';
+"use strict";
 
-import './style.css';
+import "./style.css";
 
-
-// Create toDo factory function, which will be called within project arrays
+// Create toDo factory function
 function createToDo(title, description, dueDate, priority, notes) {
   const toDo = {
     title: title,
@@ -11,38 +10,36 @@ function createToDo(title, description, dueDate, priority, notes) {
     dueDate: dueDate,
     priority: priority,
     notes: notes,
-  }
+  };
 
-  return toDo
+  return toDo;
 }
 
-// Create project factory function
-function createNewProject(name) {
-  const projectName = [];
-  return projectName;
+// Create projects
+function createProject() {
+  const projects = {
+    default: [],
+  };
+
+  return { projects };
 }
 
-// Add toDo to project
-function addToDo(name, title, description, dueDate, priority, notes) {
-  const newProject = createNewProject(name);
-  const newToDo = createToDo(title, description, dueDate, priority, notes);
+// Add new projects
+function addNewProjects(projectName) {
+  const allProjects = createProject().projects;
+  allProjects[projectName] = [];
 
-  newProject.push(newToDo);
-  return newProject;
+  return { allProjects };
 }
 
-// Create projects container array
-function projectsContainer() {
-  const projects = [];
-  return {projects};
-}
+console.log(addNewProjects("hi"));
 
-// Add new projects and toDos to container
-function addProjectsAndToDos() {  
-  const allProjects = projectsContainer();
-  allProjects.projects.push(addToDo('default', 'first to do', 'a bunch of words', 'sometime' ,'high', 'none'));
+// Edit projects
 
-  return allProjects;
-}
+// Delete projects
 
-console.log(addProjectsAndToDos());
+// Add toDos
+
+// Edit toDos
+
+// Delete toDos
