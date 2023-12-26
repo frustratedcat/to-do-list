@@ -15,7 +15,7 @@ function createToDo(title, description, dueDate, priority, notes) {
   return toDo;
 }
 
-// Create projects
+// Create projects container
 function createProject() {
   const projects = {
     default: [],
@@ -24,22 +24,51 @@ function createProject() {
   return { projects };
 }
 
-// Add new projects
-function addNewProjects(projectName) {
+// Creat new projects
+function createNewProject(projectName) {
   const allProjects = createProject().projects;
   allProjects[projectName] = [];
 
   return { allProjects };
 }
 
-console.log(addNewProjects("hi"));
+console.log(createNewProject('hello'))
+
 
 // Edit projects
+function editProject(existingProjectName, newProjectName) {
+  const allProjects = () => createProject().projects;
+  const existingProject = allProjects(existingProjectName);
+}
 
 // Delete projects
+function deleteProject() {
+
+}
 
 // Add toDos
+function addToDo() {
+
+}
 
 // Edit toDos
+function editToDo() {
+
+}
 
 // Delete toDos
+function deleteToDo() {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
