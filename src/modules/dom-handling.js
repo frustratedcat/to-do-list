@@ -22,4 +22,37 @@ function clickAddToDoBtn() {
   })
 }
 
+// Submit new project form
+function submitProjectForm() {
+  const addProjectSubmitForm = document.getElementById("add-project-submit-form");
+
+}
+
+// Submit new to-do form
+function submitToDoForm() {
+  const addToDoSubmitForm = document.getElementById("add-to-do-submit-form")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export { clickAddProjectBtn, clickAddToDoBtn }
