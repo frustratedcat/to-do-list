@@ -3,3 +3,34 @@ box-sizing: border-box;
 margin: 0;
 padding: 0;
 }
+
+body {
+  height: 100vh;
+}
+
+.hide-form {
+  display: none;
+}
+
+#add-project-form, #add-to-do-form {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 350px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.form-styling {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  margin-bottom: 10px;
+}
+
+.form-input {
+  margin-bottom: 20px;
+}

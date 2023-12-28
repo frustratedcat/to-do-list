@@ -30,9 +30,7 @@ function createNewProject(projectName) {
 
 
 // Edit projects
-function editProject(existingProjectName, newProjectName) {
-  const allProjects = () => createProject().projects;
-  const existingProject = allProjects(existingProjectName);
+function editProject() {
 }
 
 // Delete projects
