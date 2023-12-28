@@ -1,5 +1,6 @@
 "use strict";
 
+import { clickAddProjectBtn, clickAddToDoBtn } from "./modules/dom-handling";
 import "./style.css";
 
 // Create toDo factory function
@@ -33,7 +34,6 @@ function createNewProject(projectName) {
 }
 
 console.log(createNewProject('hello'))
-
 
 // Edit projects
 function editProject(existingProjectName, newProjectName) {
