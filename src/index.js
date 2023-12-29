@@ -1,8 +1,9 @@
 "use strict";
 
-import { clickAddProjectBtn, clickAddToDoBtn, submitProjectForm, submitToDoForm } from "./modules/dom-handling";
+import { clickAddProjectBtn, clickAddToDoBtn, showProjects, submitProjectForm, submitToDoForm } from "./modules/dom-handling";
 import "./style.css";
 
+showProjects();
 clickAddProjectBtn();
 clickAddToDoBtn();
 submitProjectForm();

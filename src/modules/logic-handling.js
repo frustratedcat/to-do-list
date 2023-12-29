@@ -32,10 +32,6 @@ function ModifyProjects() {
   return { projects, newProject, editProject, deleteProject }
 }
 
-
-
-
-
 // Create toDo factory function
 function createToDo(title, description, dueDate, priority, notes) {
   const toDo = {

@@ -2,7 +2,7 @@
 import { createToDo, ModifyProjects, createDiv } from "./logic-handling";
 
 // Define all DOM objects
-function defineDOMItems() {
+function DefineDOMItems() {
   // Btns to open form modals
   const addProjectBtn = document.getElementById("add-project-btn");
   const addToDoBtn = document.getElementById("add-to-do-btn");
@@ -24,75 +24,85 @@ function defineDOMItems() {
   return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer }
 }
 
+// Get logic 
+function GetLogic() {
+  // Get modifyProjects 
+  const modifyProjects = ModifyProjects();
+
+  return { modifyProjects }
+}
+
+// Show projects on page
+function showProjects() {
+  const projectsContainer = DefineDOMItems().projectsContainer;
+  const modifyProjects = GetLogic().modifyProjects;
+  console.log(modifyProjects.projects)
+
+  // Show projects on page
+  projectsContainer.appendChild(createDiv(Object.keys(modifyProjects.projects)));
+}
+
 // Add click event to add-project-btn
 function clickAddProjectBtn() {
-  const addProjectBtn = defineDOMItems().addProjectBtn;
+  const addProjectBtn = DefineDOMItems().addProjectBtn;
   addProjectBtn.addEventListener("click", (e) => {
     console.log(e.target);
 
     // Show projects form modal
-    const addProjectForm = defineDOMItems().addProjectForm;
+    const addProjectForm = DefineDOMItems().addProjectForm;
     addProjectForm.classList.remove("hide-form");
 
     // Hide To-Do form modal
-    const addToDoForm = defineDOMItems().addToDoForm;
+    const addToDoForm = DefineDOMItems().addToDoForm;
     addToDoForm.classList.add("hide-form");
   })
 }
 
 // Add click event to add-to-do-btn
 function clickAddToDoBtn() {
-  const addToDoBtn = defineDOMItems().addToDoBtn;
+  const addToDoBtn = DefineDOMItems().addToDoBtn;
   addToDoBtn.addEventListener("click", (e) => {
     console.log(e.target);
 
     // Show To-Do form modal
-    const addToDoForm = defineDOMItems().addToDoForm;
+    const addToDoForm = DefineDOMItems().addToDoForm;
     addToDoForm.classList.remove('hide-form');
 
     // Hide projects form modal
-    const addProjectForm = defineDOMItems().addProjectForm;
+    const addProjectForm = DefineDOMItems().addProjectForm;
     addProjectForm.classList.add("hide-form");
   })
 }
 
 // Add new project
 function newProject() {
-  const newProjectInput = defineDOMItems().newProjectInput;
-  const projectsContainer = defineDOMItems().projectsContainer;
-  const modifyProjects = ModifyProjects();
-  console.log(modifyProjects.projects)
-
-  // Show projects on page
-  projectsContainer.appendChild(createDiv(Object.keys(modifyProjects.projects)));
-
+  const newProjectInput = DefineDOMItems().newProjectInput;
 
 }
 
-newProject();
 
 
 // Submit new project form
 function submitProjectForm() {
-  const addProjectSubmitBtn = defineDOMItems().addProjectSubmitBtn;
+  const addProjectSubmitBtn = DefineDOMItems().addProjectSubmitBtn;
   addProjectSubmitBtn.addEventListener("click", (e) => {
     console.log(e.target);
 
-    const addProjectForm = defineDOMItems().addProjectForm;
+    const addProjectForm = DefineDOMItems().addProjectForm;
     addProjectForm.classList.add('hide-form');
   })
 }
 
 // Submit new to-do form
 function submitToDoForm() {
-  const addToDoSubmitBtn = defineDOMItems().addToDoSubmitBtn;
+  const addToDoSubmitBtn = DefineDOMItems().addToDoSubmitBtn;
   addToDoSubmitBtn.addEventListener("click", (e) => {
     console.log(e.target);
 
-    const addToDoForm = defineDOMItems().addToDoForm;
+    const addToDoForm = DefineDOMItems().addToDoForm;
     addToDoForm.classList.add('hide-form');
   })
 }
 
 
-export { clickAddProjectBtn, clickAddToDoBtn, submitProjectForm, submitToDoForm }
+export { showProjects, clickAddProjectBtn, clickAddToDoBtn, submitProjectForm, submitToDoForm }
