@@ -1,5 +1,5 @@
 // Import functions
-import { createToDo, createProject, createNewProject } from "./logic-handling";
+import { createToDo, modifyProjects, createDiv } from "./logic-handling";
 
 // Define all DOM objects
 function defineDOMItems() {
@@ -15,7 +15,13 @@ function defineDOMItems() {
   const addProjectSubmitBtn = document.getElementById("add-project-submit-btn");
   const addToDoSubmitBtn = document.getElementById("add-to-do-submit-btn");
 
-  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn }
+  // Project inputs
+  const newProjectInput = document.getElementById("new-project-input");
+
+  //Projects container
+  const projectsContainer = document.getElementById("projects-container");
+
+  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer }
 }
 
 // Add click event to add-project-btn
@@ -50,6 +56,20 @@ function clickAddToDoBtn() {
   })
 }
 
+// Add new project
+function newProject() {
+  const newProjectInput = defineDOMItems().newProjectInput;
+  const projectsContainer = defineDOMItems().projectsContainer;
+
+  console.log(modifyProjects().projects);
+
+
+
+}
+
+newProject();
+
+
 // Submit new project form
 function submitProjectForm() {
   const addProjectSubmitBtn = defineDOMItems().addProjectSubmitBtn;
@@ -58,8 +78,6 @@ function submitProjectForm() {
 
     const addProjectForm = defineDOMItems().addProjectForm;
     addProjectForm.classList.add('hide-form');
-
-    e.preventDefault();
   })
 }
 
@@ -71,16 +89,8 @@ function submitToDoForm() {
 
     const addToDoForm = defineDOMItems().addToDoForm;
     addToDoForm.classList.add('hide-form');
-
-    e.preventDefault();
   })
 }
-
-
-
-
-
-
 
 
 export { clickAddProjectBtn, clickAddToDoBtn, submitProjectForm, submitToDoForm }

@@ -1,3 +1,41 @@
+// Projects container
+function createProject() {
+  const projects = {};
+
+  // Check if projects object is empty
+  if (Object.keys(projects).length === 0) {
+    Object.assign(projects, { default: [] })
+  }
+
+  return { projects }
+}
+
+// Add/Edit/Delete projects
+function modifyProjects() {
+  const projects = createProject().projects;
+
+  // Create new projects
+  const newProject = (projectName) => {
+    projects[projectName] = [];
+    return projects;
+  }
+
+  // Edit projects
+  const editProject = () => {
+  }
+
+  // Delete projects
+  function deleteProject() {
+
+  }
+
+  return { projects, newProject, editProject, deleteProject }
+}
+
+
+
+
+
 // Create toDo factory function
 function createToDo(title, description, dueDate, priority, notes) {
   const toDo = {
@@ -8,34 +46,7 @@ function createToDo(title, description, dueDate, priority, notes) {
     notes: notes,
   };
 
-  return toDo;
-}
-
-// Create projects container
-function createProject() {
-  const projects = {
-    default: [],
-  };
-
-  return { projects };
-}
-
-// Creat new projects
-function createNewProject(projectName) {
-  const allProjects = createProject().projects;
-  allProjects[projectName] = [];
-
-  return { allProjects };
-}
-
-
-// Edit projects
-function editProject() {
-}
-
-// Delete projects
-function deleteProject() {
-
+  return { toDo };
 }
 
 // Add toDos
@@ -53,4 +64,11 @@ function deleteToDo() {
 
 }
 
-export { createToDo, createProject, createNewProject }
+// Add DOM element builders
+function createDiv() {
+  const div = document.createElement("div");
+  return div
+}
+
+
+export { createToDo, createProject, modifyProjects, createDiv }
