@@ -1,5 +1,5 @@
 // Import functions
-import { createToDo, modifyProjects, createDiv } from "./logic-handling";
+import { createToDo, ModifyProjects, createDiv } from "./logic-handling";
 
 // Define all DOM objects
 function defineDOMItems() {
@@ -60,9 +60,11 @@ function clickAddToDoBtn() {
 function newProject() {
   const newProjectInput = defineDOMItems().newProjectInput;
   const projectsContainer = defineDOMItems().projectsContainer;
+  const modifyProjects = ModifyProjects();
+  console.log(modifyProjects.projects)
 
-  console.log(modifyProjects().projects);
-
+  // Show projects on page
+  projectsContainer.appendChild(createDiv(Object.keys(modifyProjects.projects)));
 
 
 }

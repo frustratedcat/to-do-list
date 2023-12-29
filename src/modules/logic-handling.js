@@ -11,7 +11,7 @@ function createProject() {
 }
 
 // Add/Edit/Delete projects
-function modifyProjects() {
+function ModifyProjects() {
   const projects = createProject().projects;
 
   // Create new projects
@@ -65,10 +65,11 @@ function deleteToDo() {
 }
 
 // Add DOM element builders
-function createDiv() {
+function createDiv(text) {
   const div = document.createElement("div");
+  div.textContent = text;
   return div
 }
 
 
-export { createToDo, createProject, modifyProjects, createDiv }
+export { createToDo, createProject, ModifyProjects, createDiv }
