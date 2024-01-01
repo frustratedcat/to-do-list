@@ -64,14 +64,17 @@ function deleteToDo() {
 function createDiv(text) {
   const div = document.createElement("div");
   div.textContent = text;
-  div.appendChild(createBtn())
-  return div
+  div.classList.add("project-item")
+  div.appendChild(createBtn());
+  return div;
 }
 
 // Add DOM buttom element builder
 function createBtn() {
   const btn = document.createElement("button");
   btn.textContent = "Expand";
+  btn.setAttribute("type", "button");
+  btn.classList.add("expand-project-btn")
   return btn;
 }
 

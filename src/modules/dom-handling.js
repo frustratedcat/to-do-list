@@ -42,7 +42,6 @@ function showProjects() {
   for (const key of Object.keys(modifyProjects.projects)) {
     projectsContainer.appendChild(createDiv(key));
   }
-
 }
 
 // Add click event to add-project-btn
