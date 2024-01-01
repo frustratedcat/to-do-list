@@ -60,12 +60,19 @@ function deleteToDo() {
 
 }
 
-// Add DOM element builders
+// Add DOM div element builders
 function createDiv(text) {
   const div = document.createElement("div");
   div.textContent = text;
+  div.appendChild(createBtn())
   return div
 }
 
+// Add DOM buttom element builder
+function createBtn() {
+  const btn = document.createElement("button");
+  btn.textContent = "Expand";
+  return btn;
+}
 
 export { createToDo, createProject, ModifyProjects, createDiv }

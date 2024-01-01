@@ -39,7 +39,10 @@ function showProjects() {
   console.log(modifyProjects.projects)
 
   // Show projects on page
-  projectsContainer.appendChild(createDiv(Object.keys(modifyProjects.projects)));
+  for (const key of Object.keys(modifyProjects.projects)) {
+    projectsContainer.appendChild(createDiv(key));
+  }
+
 }
 
 // Add click event to add-project-btn
