@@ -27,7 +27,6 @@ function DefineDOMItems() {
 
 // Add click event to add-project-btn
 function clickAddProjectBtn() {
-  console.log('running clickAddProjectBtn')
   const addProjectBtn = DefineDOMItems().addProjectBtn;
   addProjectBtn.addEventListener("click", (e) => {
     console.log(e.target);
@@ -44,7 +43,6 @@ function clickAddProjectBtn() {
 
 // Add click event to add-to-do-btn
 function clickAddToDoBtn() {
-  console.log('running clickAddToDoBtn')
   const addToDoBtn = DefineDOMItems().addToDoBtn;
   addToDoBtn.addEventListener("click", (e) => {
     console.log(e.target);
@@ -61,7 +59,6 @@ function clickAddToDoBtn() {
 
 // Add new project
 function newProjectValue() {
-  console.log('running newProjectValue')
   const newProjectInput = DefineDOMItems().newProjectInput;
   return newProjectInput.value;
 }
@@ -73,7 +70,7 @@ function getLogic() {
 
   // Show projects on page
   const showProjects = () => {
-    console.log('running showProjects')
+    // Get DOM element
     const projectsContainer = DefineDOMItems().projectsContainer;
 
     // Remove children in preparation for showing new children
@@ -81,17 +78,22 @@ function getLogic() {
       projectsContainer.removeChild(projectsContainer.firstChild);
     }
 
-    console.log(modifyProjects.projects)
-
     // Show projects on page
     for (const key of Object.keys(modifyProjects.projects)) {
       projectsContainer.appendChild(createDiv(key));
     }
+
+    // Test log to delete later
+    console.log(modifyProjects.projects)
+  }
+
+  // Show to-do on page
+  const showToDos = () => {
+
   }
 
   // Submit new project form
   const submitProjectForm = () => {
-    console.log('running submitProjectForm')
     const addProjectSubmitBtn = DefineDOMItems().addProjectSubmitBtn;
     addProjectSubmitBtn.addEventListener("click", (e) => {
       console.log(e.target);
@@ -108,7 +110,6 @@ function getLogic() {
 
   // Submit new to-do form
   const submitToDoForm = () => {
-    console.log('running submitToDoForm')
     const addToDoSubmitBtn = DefineDOMItems().addToDoSubmitBtn;
     addToDoSubmitBtn.addEventListener("click", (e) => {
       console.log(e.target);
