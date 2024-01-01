@@ -1,16 +1,21 @@
 "use strict";
 
-import { clickAddProjectBtn, clickAddToDoBtn, showProjects, submitProjectForm, submitToDoForm } from "./modules/dom-handling";
+import { clickAddProjectBtn, clickAddToDoBtn, getLogic } from "./modules/dom-handling";
 import "./style.css";
 
-showProjects();
-clickAddProjectBtn();
-clickAddToDoBtn();
-submitProjectForm();
-submitToDoForm();
+function getAll() {
+  clickAddProjectBtn();
+  clickAddToDoBtn();
+  getLogic();
+}
 
+function run() {
+  console.log("running");
+  getAll();
+  console.log("done");
+}
 
-
+run();
 
 
 
