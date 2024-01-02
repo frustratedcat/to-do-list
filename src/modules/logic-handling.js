@@ -65,7 +65,6 @@ function createDiv(pText, liText) {
   div.classList.add("project-item");
   div.appendChild(createP(pText))
   div.appendChild(btnProject());
-  div.appendChild(createUl(liText));
   return div;
 }
 
@@ -103,7 +102,7 @@ function btnToDo() {
 function createUl(text) {
   const ul = document.createElement("ul");
   ul.classList.add("project-to-do-list");
-  ul.appendChild(createLi(text));
+  ul.appendChild(createLi(text))
   return ul;
 }
 
@@ -116,4 +115,4 @@ function createLi(text) {
   return li
 }
 
-export { createToDo, createProject, ModifyProjects, createDiv }
+export { createToDo, createProject, ModifyProjects, createDiv, createUl }

@@ -1,5 +1,5 @@
 // Import functions
-import { createToDo, ModifyProjects, createDiv } from "./logic-handling";
+import { createToDo, ModifyProjects, createDiv, createUl } from "./logic-handling";
 
 // Define all DOM objects
 function DefineDOMItems() {
@@ -98,8 +98,12 @@ function getLogic() {
 
     // Show projects on page
     for (const [key, value] of Object.entries(modifyProjects.projects)) {
-      projectsContainer.appendChild(createDiv(key, value));
+      projectsContainer.append(createDiv(key));
+      value.map((v) => { projectsContainer.lastElementChild.append(createUl(v)) })
     }
+
+
+    console.log(projectsContainer.children)
 
     // Test log to delete later
     console.log(modifyProjects.projects)
@@ -135,6 +139,7 @@ function getLogic() {
 
       const addToDoForm = DefineDOMItems().addToDoForm;
       addToDoForm.classList.add("hide");
+      ul.appendChild(btnToDo());
     })
   }
 
