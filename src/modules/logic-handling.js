@@ -6,7 +6,6 @@ function createProject() {
   if (Object.keys(projects).length === 0) {
     Object.assign(projects, { default: [] })
   }
-
   return { projects }
 }
 

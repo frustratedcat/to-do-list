@@ -21,7 +21,10 @@ function DefineDOMItems() {
   //Projects container
   const projectsContainer = document.getElementById("projects-container");
 
-  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer }
+  // Projects expand btn
+  let expandProjectBtn = document.querySelectorAll(".expand-project-btn");
+
+  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer, expandProjectBtn }
 }
 
 
@@ -59,6 +62,17 @@ function clickAddToDoBtn() {
     const addProjectForm = DefineDOMItems().addProjectForm;
     addProjectForm.classList.add("hide-form");
   })
+}
+
+// Add click event to expand btn on projects
+function clickProjectExpand() {
+  let expandProjectBtn = DefineDOMItems().expandProjectBtn;
+  console.log(expandProjectBtn.length)
+  for (let i = 0; i < expandProjectBtn.length; i++) {
+    expandProjectBtn[i].addEventListener("click", (e) => {
+      console.log(e.target);
+    })
+  }
 }
 
 // Add new project
@@ -109,6 +123,7 @@ function getLogic() {
 
       modifyProjects.newProject(newProjectValue());
       showProjects();
+      clickProjectExpand();
     })
   }
 
@@ -130,4 +145,4 @@ function getLogic() {
 
 
 
-export { clickAddProjectBtn, clickAddToDoBtn, getLogic }
+export { clickAddProjectBtn, clickAddToDoBtn, getLogic, clickProjectExpand }
