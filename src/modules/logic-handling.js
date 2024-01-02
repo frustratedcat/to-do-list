@@ -4,7 +4,7 @@ function createProject() {
 
   // Check if projects object is empty
   if (Object.keys(projects).length === 0) {
-    Object.assign(projects, { default: [] })
+    Object.assign(projects, { default: ["hi", "yo"] })
   }
   return { projects }
 }
@@ -60,11 +60,12 @@ function deleteToDo() {
 }
 
 // Add DOM div element builders
-function createDiv(text) {
+function createDiv(pText, liText) {
   const div = document.createElement("div");
   div.classList.add("project-item");
-  div.appendChild(createP(text))
-  div.appendChild(createBtn());
+  div.appendChild(createP(pText))
+  div.appendChild(btnProject());
+  div.appendChild(createUl(liText));
   return div;
 }
 
@@ -79,10 +80,40 @@ function createP(text) {
 // Add DOM buttom element builder
 function createBtn() {
   const btn = document.createElement("button");
+  return btn;
+}
+
+function btnProject() {
+  const btn = createBtn();
   btn.textContent = "Expand";
   btn.setAttribute("type", "button");
   btn.classList.add("expand-project-btn")
   return btn;
+}
+
+function btnToDo() {
+  const btn = createBtn();
+  btn.textContent = "Expand";
+  btn.setAttribute("type", "button");
+  btn.classList.add("expand-do-do-btn")
+  return btn;
+}
+
+// Add DOM ul element bulider
+function createUl(text) {
+  const ul = document.createElement("ul");
+  ul.classList.add("project-to-do-list");
+  ul.appendChild(createLi(text));
+  return ul;
+}
+
+// Add DOM li element builder
+function createLi(text) {
+  const li = document.createElement("li");
+  li.textContent = text;
+  li.classList.add("project-to-do");
+  li.appendChild(btnToDo());
+  return li
 }
 
 export { createToDo, createProject, ModifyProjects, createDiv }

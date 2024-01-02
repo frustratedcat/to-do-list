@@ -36,11 +36,11 @@ function clickAddProjectBtn() {
 
     // Show projects form modal
     const addProjectForm = DefineDOMItems().addProjectForm;
-    addProjectForm.classList.remove("hide-form");
+    addProjectForm.classList.remove("hide");
 
     // Hide To-Do form modal
     const addToDoForm = DefineDOMItems().addToDoForm;
-    addToDoForm.classList.add("hide-form");
+    addToDoForm.classList.add("hide");
 
     // Remove project form input values
     const newProjectInput = DefineDOMItems().newProjectInput;
@@ -56,11 +56,11 @@ function clickAddToDoBtn() {
 
     // Show To-Do form modal
     const addToDoForm = DefineDOMItems().addToDoForm;
-    addToDoForm.classList.remove('hide-form');
+    addToDoForm.classList.remove("hide");
 
     // Hide projects form modal
     const addProjectForm = DefineDOMItems().addProjectForm;
-    addProjectForm.classList.add("hide-form");
+    addProjectForm.classList.add("hide");
   })
 }
 
@@ -97,8 +97,8 @@ function getLogic() {
     }
 
     // Show projects on page
-    for (const key of Object.keys(modifyProjects.projects)) {
-      projectsContainer.appendChild(createDiv(key));
+    for (const [key, value] of Object.entries(modifyProjects.projects)) {
+      projectsContainer.appendChild(createDiv(key, value));
     }
 
     // Test log to delete later
@@ -118,7 +118,7 @@ function getLogic() {
       e.preventDefault();
 
       const addProjectForm = DefineDOMItems().addProjectForm;
-      addProjectForm.classList.add('hide-form');
+      addProjectForm.classList.add("hide");
       console.log(newProjectValue());
 
       modifyProjects.newProject(newProjectValue());
@@ -134,7 +134,7 @@ function getLogic() {
       console.log(e.target);
 
       const addToDoForm = DefineDOMItems().addToDoForm;
-      addToDoForm.classList.add('hide-form');
+      addToDoForm.classList.add("hide");
     })
   }
 
