@@ -38,6 +38,10 @@ function clickAddProjectBtn() {
     // Hide To-Do form modal
     const addToDoForm = DefineDOMItems().addToDoForm;
     addToDoForm.classList.add("hide-form");
+
+    // Remove project form input values
+    const newProjectInput = DefineDOMItems().newProjectInput;
+    newProjectInput.value = "";
   })
 }
 

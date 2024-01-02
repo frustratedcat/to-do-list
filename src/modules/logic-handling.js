@@ -63,10 +63,18 @@ function deleteToDo() {
 // Add DOM div element builders
 function createDiv(text) {
   const div = document.createElement("div");
-  div.textContent = text;
-  div.classList.add("project-item")
+  div.classList.add("project-item");
+  div.appendChild(createP(text))
   div.appendChild(createBtn());
   return div;
+}
+
+// Add DOM p element builder
+function createP(text) {
+  const p = document.createElement("p");
+  p.textContent = text;
+  p.classList.add("project-text");
+  return p;
 }
 
 // Add DOM buttom element builder

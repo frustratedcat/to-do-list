@@ -34,3 +34,7 @@ body {
 .form-input {
   margin-bottom: 20px;
 }
+
+.project-item {
+  display: flex;
+}
