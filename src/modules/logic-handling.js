@@ -5,6 +5,7 @@ function createProject() {
   // Check if projects object is empty
   if (Object.keys(projects).length === 0) {
     Object.assign(projects, { default: ["hi", "yo"] })
+    Object.assign(projects, { test: ["hey", "bro"] })
   }
   return { projects }
 }
@@ -84,7 +85,7 @@ function createBtn() {
 
 function btnProject() {
   const btn = createBtn();
-  btn.textContent = "Expand";
+  btn.textContent = "+";
   btn.setAttribute("type", "button");
   btn.classList.add("expand-project-btn")
   return btn;
@@ -92,7 +93,7 @@ function btnProject() {
 
 function btnToDo() {
   const btn = createBtn();
-  btn.textContent = "Expand";
+  btn.textContent = "+";
   btn.setAttribute("type", "button");
   btn.classList.add("expand-do-do-btn")
   return btn;

@@ -8,10 +8,6 @@ body {
   height: 100vh;
 }
 
-.hide {
-  display: none;
-}
-
 #add-project-form, #add-to-do-form {
   position: absolute;
   top: 50px;
@@ -37,4 +33,27 @@ body {
 
 .project-item {
   display: flex;
+}
+
+.project-text {
+  width: 75px;
+}
+
+.project-to-do-list {
+  width: 75px;
+}
+
+.project-to-do {
+  display: flex;
+  list-style: none;
+  margin: 0 10px;
+}
+
+.project-to-do > button {
+  margin-left: auto;
+
+}
+
+.hide {
+  display: none;
 }

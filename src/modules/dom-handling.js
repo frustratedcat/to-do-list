@@ -102,9 +102,6 @@ function getLogic() {
       value.map((v) => { projectsContainer.lastElementChild.append(createUl(v)) })
     }
 
-
-    console.log(projectsContainer.children)
-
     // Test log to delete later
     console.log(modifyProjects.projects)
   }
