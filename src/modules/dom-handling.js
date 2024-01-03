@@ -99,7 +99,7 @@ function getLogic() {
     // Show projects on page
     for (const [key, value] of Object.entries(modifyProjects.projects)) {
       projectsContainer.append(createDiv(key));
-      value.map((v) => { projectsContainer.lastElementChild.append(createUl(v)) })
+      value.map((v) => { projectsContainer.lastElementChild.append(createUl(v.title)) })
     }
 
     // Test log to delete later

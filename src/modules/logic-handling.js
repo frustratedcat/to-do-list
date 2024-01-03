@@ -4,8 +4,8 @@ function createProject() {
 
   // Check if projects object is empty
   if (Object.keys(projects).length === 0) {
-    Object.assign(projects, { default: ["hi", "yo"] })
-    Object.assign(projects, { test: ["hey", "bro"] })
+    Object.assign(projects, { default: [{ title: "hi", description: "describe", dueDate: "idk", priority: "high", notes: "nope" }, { title: "yo" }] })
+    Object.assign(projects, { test: [{ title: "hey" }, { title: "bro" }] })
   }
   return { projects }
 }
