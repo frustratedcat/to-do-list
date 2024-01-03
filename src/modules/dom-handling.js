@@ -1,5 +1,5 @@
 // Import functions
-import { createToDo, ModifyProjects, createDiv, createUl } from "./logic-handling";
+import { createToDo, ModifyProjects, createDiv, createUl, createOption } from "./logic-handling";
 
 // Define all DOM objects
 function DefineDOMItems() {
@@ -24,7 +24,10 @@ function DefineDOMItems() {
   // Projects expand btn
   let expandProjectBtn = document.querySelectorAll(".expand-project-btn");
 
-  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer, expandProjectBtn }
+  // Select project for new to-do
+  const toDoProjectSelect = document.getElementById("to-do-project-select");
+
+  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer, expandProjectBtn, toDoProjectSelect }
 }
 
 
@@ -104,6 +107,7 @@ function getLogic() {
 
     // Test log to delete later
     console.log(modifyProjects.projects)
+    return modifyProjects.projects;
   }
 
   // Show to-do on page
@@ -125,10 +129,26 @@ function getLogic() {
       modifyProjects.newProject(newProjectValue());
       showProjects();
       clickProjectExpand();
+      addProjectOptions();
     })
   }
 
-  // Submit new to-do form
+  // Add project options
+  const addProjectOptions = () => {
+    const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
+
+    // Remove existing options
+    while (toDoProjectSelect.firstChild) {
+      toDoProjectSelect.removeChild(toDoProjectSelect.firstChild);
+    }
+
+    // Add options
+    for (const key of Object.keys(modifyProjects.projects)) {
+      toDoProjectSelect.append(createOption(key))
+    }
+  }
+
+  // Submit new to-do form 
   const submitToDoForm = () => {
     const addToDoSubmitBtn = DefineDOMItems().addToDoSubmitBtn;
     addToDoSubmitBtn.addEventListener("click", (e) => {
@@ -143,6 +163,7 @@ function getLogic() {
   // Run all funcitons
   showProjects();
   submitProjectForm();
+  addProjectOptions();
 }
 
 

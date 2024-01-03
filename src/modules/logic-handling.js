@@ -116,4 +116,13 @@ function createLi(text) {
   return li
 }
 
-export { createToDo, createProject, ModifyProjects, createDiv, createUl }
+// Add DOM option element builder
+function createOption(text) {
+  const option = document.createElement("option");
+  option.setAttribute("value", text);
+  option.textContent = text;
+  option.classList.add("project-option");
+  return option;
+}
+
+export { createToDo, createProject, ModifyProjects, createDiv, createUl, createOption }
