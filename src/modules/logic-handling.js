@@ -34,15 +34,7 @@ function ModifyProjects() {
 
 // Create toDo factory function
 function createToDo(title, description, dueDate, priority, notes) {
-  const toDo = {
-    title: title,
-    description: description,
-    dueDate: dueDate,
-    priority: priority,
-    notes: notes,
-  };
-
-  return { toDo };
+  return { title: title, description: description, dueDate: dueDate, priority: priority, notes: notes };
 }
 
 // Add toDos

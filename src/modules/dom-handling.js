@@ -171,18 +171,16 @@ function getLogic() {
       const newToDoPriority = DefineDOMItems().newToDoPriority;
       const newToDoNotes = DefineDOMItems().newToDoNotes;
 
-      for (const [key, value] of Object.entries(currentProjects)) {
+      for (const [key, value] of Object.entries(modifyProjects.projects)) {
         if (key === toDoProjectSelect.value) {
           console.log(key);
           console.log(value);
-          currentProjects.key = value.push({ title: newToDoTitle.value, description: newToDoDescription.value, dueDate: newToDoDueDate.value, priority: newToDoPriority.value, notes: newToDoNotes.value });
+          value.push(createToDo(newToDoTitle.value, newToDoDescription.value, newToDoDueDate.value, newToDoPriority.value, newToDoNotes.value))
         }
       }
-      console.log(currentProjects);
-      return currentProjects;
+      showProjects();
     })
   }
-
   // Run all funcitons
   showProjects();
   submitProjectForm();
