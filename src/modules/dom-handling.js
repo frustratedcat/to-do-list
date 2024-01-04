@@ -6,24 +6,18 @@ function DefineDOMItems() {
   // Btns to open form modals
   const addProjectBtn = document.getElementById("add-project-btn");
   const addToDoBtn = document.getElementById("add-to-do-btn");
-
   // Form modal objects
   const addProjectForm = document.getElementById("add-project-form");
   const addToDoForm = document.getElementById("add-to-do-form");
-
   // Btns to submit form modals
   const addProjectSubmitBtn = document.getElementById("add-project-submit-btn");
   const addToDoSubmitBtn = document.getElementById("add-to-do-submit-btn");
-
   // Project inputs
   const newProjectInput = document.getElementById("new-project-input");
-
   //Projects container
   const projectsContainer = document.getElementById("projects-container");
-
   // Projects expand btn
   let expandProjectBtn = document.querySelectorAll(".expand-project-btn");
-
   // To-do inputs
   const toDoProjectSelect = document.getElementById("to-do-project-select");
   const newToDoTitle = document.getElementById("new-to-do-title");
@@ -31,7 +25,7 @@ function DefineDOMItems() {
   const newToDoDueDate = document.getElementById("new-to-do-due-date");
   const newToDoPriority = document.getElementById("new-to-do-priority");
   const newToDoNotes = document.getElementById("new-to-do-notes");
-
+  // Return all
   return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer, expandProjectBtn, toDoProjectSelect, newToDoTitle, newToDoDescription, newToDoDueDate, newToDoPriority, newToDoNotes }
 }
 
@@ -41,15 +35,12 @@ function clickAddProjectBtn() {
   const addProjectBtn = DefineDOMItems().addProjectBtn;
   addProjectBtn.addEventListener("click", (e) => {
     console.log(e.target);
-
     // Show projects form modal
     const addProjectForm = DefineDOMItems().addProjectForm;
     addProjectForm.classList.remove("hide");
-
     // Hide To-Do form modal
     const addToDoForm = DefineDOMItems().addToDoForm;
     addToDoForm.classList.add("hide");
-
     // Remove project form input values
     const newProjectInput = DefineDOMItems().newProjectInput;
     newProjectInput.value = "";
@@ -61,15 +52,12 @@ function clickAddToDoBtn() {
   const addToDoBtn = DefineDOMItems().addToDoBtn;
   addToDoBtn.addEventListener("click", (e) => {
     console.log(e.target);
-
     // Show To-Do form modal
     const addToDoForm = DefineDOMItems().addToDoForm;
     addToDoForm.classList.remove("hide");
-
     // Hide projects form modal
     const addProjectForm = DefineDOMItems().addProjectForm;
     addProjectForm.classList.add("hide");
-
     // Define to-do values and set to empty values
     const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
     const newToDoTitle = DefineDOMItems().newToDoTitle;
@@ -77,7 +65,6 @@ function clickAddToDoBtn() {
     const newToDoDueDate = DefineDOMItems().newToDoDueDate;
     const newToDoPriority = DefineDOMItems().newToDoPriority;
     const newToDoNotes = DefineDOMItems().newToDoNotes;
-
     toDoProjectSelect.value = "";
     newToDoTitle.value = "";
     newToDoDescription.value = "";
@@ -90,10 +77,15 @@ function clickAddToDoBtn() {
 // Add click event to expand btn on projects
 function clickProjectExpand() {
   let expandProjectBtn = DefineDOMItems().expandProjectBtn;
-  console.log(expandProjectBtn.length)
   for (let i = 0; i < expandProjectBtn.length; i++) {
     expandProjectBtn[i].addEventListener("click", (e) => {
-      console.log(e.target);
+      let target = e.target;
+      let targetSibling = target.nextElementSibling;
+      // Loop through siblings
+      while (targetSibling) {
+        targetSibling.classList.toggle("hide");
+        targetSibling = targetSibling.nextElementSibling;
+      }
     })
   }
 }
@@ -108,7 +100,6 @@ function newProjectValue() {
 function getLogic() {
   // Get modifyProjects 
   const modifyProjects = ModifyProjects();
-
   // Show projects on page
   const showProjects = () => {
     // Get DOM element
@@ -127,22 +118,15 @@ function getLogic() {
     return modifyProjects.projects;
   }
 
-  // Show to-do on page
-  const showToDos = () => {
-
-  }
-
   // Submit new project form
   const submitProjectForm = () => {
     const addProjectSubmitBtn = DefineDOMItems().addProjectSubmitBtn;
     addProjectSubmitBtn.addEventListener("click", (e) => {
       console.log(e.target);
       e.preventDefault();
-
+      // Hide form
       const addProjectForm = DefineDOMItems().addProjectForm;
       addProjectForm.classList.add("hide");
-      console.log(newProjectValue());
-
       modifyProjects.newProject(newProjectValue());
       showProjects();
       clickProjectExpand();
@@ -153,12 +137,10 @@ function getLogic() {
   // Add project options
   const addProjectOptions = () => {
     const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
-
     // Remove existing options
     while (toDoProjectSelect.firstChild) {
       toDoProjectSelect.removeChild(toDoProjectSelect.firstChild);
     }
-
     // Add options
     for (const key of Object.keys(modifyProjects.projects)) {
       toDoProjectSelect.append(createOption(key))
@@ -168,14 +150,12 @@ function getLogic() {
   // Submit new to-do form 
   const submitToDoForm = () => {
     const addToDoSubmitBtn = DefineDOMItems().addToDoSubmitBtn;
-
     addToDoSubmitBtn.addEventListener("click", (e) => {
       console.log(e.target);
       e.preventDefault();
-
+      // Hide form
       const addToDoForm = DefineDOMItems().addToDoForm;
       addToDoForm.classList.add("hide");
-
       // Define to-do values
       const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
       const newToDoTitle = DefineDOMItems().newToDoTitle;
@@ -183,7 +163,6 @@ function getLogic() {
       const newToDoDueDate = DefineDOMItems().newToDoDueDate;
       const newToDoPriority = DefineDOMItems().newToDoPriority;
       const newToDoNotes = DefineDOMItems().newToDoNotes;
-
       // Add to-dos
       for (const [key, value] of Object.entries(modifyProjects.projects)) {
         if (key === toDoProjectSelect.value) {
@@ -192,6 +171,7 @@ function getLogic() {
       }
       // Show new to-dos on screen
       showProjects();
+      clickProjectExpand();
     })
   }
   // Run all funcitons
@@ -200,7 +180,5 @@ function getLogic() {
   submitToDoForm();
   addProjectOptions();
 }
-
-
 
 export { clickAddProjectBtn, clickAddToDoBtn, getLogic, clickProjectExpand }

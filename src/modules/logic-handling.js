@@ -94,7 +94,7 @@ function btnToDo() {
 // Add DOM ul element bulider
 function createUl(text) {
   const ul = document.createElement("ul");
-  ul.classList.add("project-to-do-list");
+  ul.classList.add("project-to-do-list", "hide");
   ul.appendChild(createLi(text))
   return ul;
 }
