@@ -69,6 +69,21 @@ function clickAddToDoBtn() {
     // Hide projects form modal
     const addProjectForm = DefineDOMItems().addProjectForm;
     addProjectForm.classList.add("hide");
+
+    // Define to-do values and set to empty values
+    const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
+    const newToDoTitle = DefineDOMItems().newToDoTitle;
+    const newToDoDescription = DefineDOMItems().newToDoDescription;
+    const newToDoDueDate = DefineDOMItems().newToDoDueDate;
+    const newToDoPriority = DefineDOMItems().newToDoPriority;
+    const newToDoNotes = DefineDOMItems().newToDoNotes;
+
+    toDoProjectSelect.value = "";
+    newToDoTitle.value = "";
+    newToDoDescription.value = "";
+    newToDoDueDate.value = "";
+    newToDoPriority.value = "";
+    newToDoNotes.value = "";
   })
 }
 
@@ -161,9 +176,7 @@ function getLogic() {
       const addToDoForm = DefineDOMItems().addToDoForm;
       addToDoForm.classList.add("hide");
 
-      const currentProjects = modifyProjects.projects;
-      console.log(currentProjects);
-
+      // Define to-do values
       const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
       const newToDoTitle = DefineDOMItems().newToDoTitle;
       const newToDoDescription = DefineDOMItems().newToDoDescription;
@@ -171,13 +184,13 @@ function getLogic() {
       const newToDoPriority = DefineDOMItems().newToDoPriority;
       const newToDoNotes = DefineDOMItems().newToDoNotes;
 
+      // Add to-dos
       for (const [key, value] of Object.entries(modifyProjects.projects)) {
         if (key === toDoProjectSelect.value) {
-          console.log(key);
-          console.log(value);
           value.push(createToDo(newToDoTitle.value, newToDoDescription.value, newToDoDueDate.value, newToDoPriority.value, newToDoNotes.value))
         }
       }
+      // Show new to-dos on screen
       showProjects();
     })
   }
