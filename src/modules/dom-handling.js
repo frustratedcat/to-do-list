@@ -24,10 +24,15 @@ function DefineDOMItems() {
   // Projects expand btn
   let expandProjectBtn = document.querySelectorAll(".expand-project-btn");
 
-  // Select project for new to-do
+  // To-do inputs
   const toDoProjectSelect = document.getElementById("to-do-project-select");
+  const newToDoTitle = document.getElementById("new-to-do-title");
+  const newToDoDescription = document.getElementById("new-to-do-description");
+  const newToDoDueDate = document.getElementById("new-to-do-due-date");
+  const newToDoPriority = document.getElementById("new-to-do-priority");
+  const newToDoNotes = document.getElementById("new-to-do-notes");
 
-  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer, expandProjectBtn, toDoProjectSelect }
+  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer, expandProjectBtn, toDoProjectSelect, newToDoTitle, newToDoDescription, newToDoDueDate, newToDoPriority, newToDoNotes }
 }
 
 
@@ -93,18 +98,15 @@ function getLogic() {
   const showProjects = () => {
     // Get DOM element
     const projectsContainer = DefineDOMItems().projectsContainer;
-
     // Remove children in preparation for showing new children
     while (projectsContainer.firstChild) {
       projectsContainer.removeChild(projectsContainer.firstChild);
     }
-
     // Show projects on page
     for (const [key, value] of Object.entries(modifyProjects.projects)) {
       projectsContainer.append(createDiv(key));
       value.map((v) => { projectsContainer.lastElementChild.append(createUl(v.title)) })
     }
-
     // Test log to delete later
     console.log(modifyProjects.projects)
     return modifyProjects.projects;
@@ -151,18 +153,40 @@ function getLogic() {
   // Submit new to-do form 
   const submitToDoForm = () => {
     const addToDoSubmitBtn = DefineDOMItems().addToDoSubmitBtn;
+
     addToDoSubmitBtn.addEventListener("click", (e) => {
       console.log(e.target);
+      e.preventDefault();
 
       const addToDoForm = DefineDOMItems().addToDoForm;
       addToDoForm.classList.add("hide");
-      ul.appendChild(btnToDo());
+
+      const currentProjects = modifyProjects.projects;
+      console.log(currentProjects);
+
+      const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
+      const newToDoTitle = DefineDOMItems().newToDoTitle;
+      const newToDoDescription = DefineDOMItems().newToDoDescription;
+      const newToDoDueDate = DefineDOMItems().newToDoDueDate;
+      const newToDoPriority = DefineDOMItems().newToDoPriority;
+      const newToDoNotes = DefineDOMItems().newToDoNotes;
+
+      for (const [key, value] of Object.entries(currentProjects)) {
+        if (key === toDoProjectSelect.value) {
+          console.log(key);
+          console.log(value);
+          currentProjects.key = value.push({ title: newToDoTitle.value, description: newToDoDescription.value, dueDate: newToDoDueDate.value, priority: newToDoPriority.value, notes: newToDoNotes.value });
+        }
+      }
+      console.log(currentProjects);
+      return currentProjects;
     })
   }
 
   // Run all funcitons
   showProjects();
   submitProjectForm();
+  submitToDoForm();
   addProjectOptions();
 }
 
