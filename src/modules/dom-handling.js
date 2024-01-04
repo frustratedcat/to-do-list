@@ -90,16 +90,28 @@ function clickProjectExpand() {
   }
 }
 
+// Add click event to expand btn on to-dos
+function clickToDoExpand() {
+  let expandToDoBtn = DefineDOMItems().expandToDoBtn;
+  for (let i = 0; i < expandToDoBtn.length; i++) {
+    expandToDoBtn[i].addEventListener("click", (e) => {
+      let target = e.target;
+
+    })
+  }
+}
+
 // Add new project
 function newProjectValue() {
   const newProjectInput = DefineDOMItems().newProjectInput;
   return newProjectInput.value;
 }
 
-// Get logic 
+// Get logic
 function getLogic() {
   // Get modifyProjects 
   const modifyProjects = ModifyProjects();
+
   // Show projects on page
   const showProjects = () => {
     // Get DOM element
@@ -116,6 +128,11 @@ function getLogic() {
     // Test log to delete later
     console.log(modifyProjects.projects)
     return modifyProjects.projects;
+  }
+
+  const showToDos = () => {
+    // Get DOM element
+
   }
 
   // Submit new project form
