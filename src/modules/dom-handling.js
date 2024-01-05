@@ -132,7 +132,14 @@ function getLogic() {
 
   const showToDos = () => {
     // Get DOM element
-
+    let projectItems = document.querySelectorAll(".project-item");
+    for (let i = 0; i < projectItems.length; i++) {
+      let item = projectItems[i];
+      for (let j = 0; j < item.children.length; j++) {
+        console.log(item.children[j])
+        console.log(item.children[j].childElementCount);
+      }
+    }
   }
 
   // Submit new project form
@@ -193,6 +200,7 @@ function getLogic() {
   }
   // Run all funcitons
   showProjects();
+  showToDos();
   submitProjectForm();
   submitToDoForm();
   addProjectOptions();
