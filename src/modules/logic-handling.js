@@ -56,9 +56,17 @@ function deleteToDo() {
 function createDiv(pText, liText) {
   const div = document.createElement("div");
   div.classList.add("project-item");
-  div.appendChild(createP(pText))
+  div.appendChild(createH3(pText))
   div.appendChild(btnProject());
   return div;
+}
+
+// Add DOM h3 element builder 
+function createH3(text) {
+  const h3 = document.createElement("h3");
+  h3.textContent = text;
+  h3.classList.add("project-text");
+  return h3;
 }
 
 // Add DOM p element builder

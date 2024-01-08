@@ -137,29 +137,36 @@ function getLogic() {
       let item = projectItems[i];
       for (let j = 0; j < item.children.length; j++) {
         if (item.children[j].classList.contains("project-to-do-list")) {
-          console.log(item.children[j].firstElementChild.firstChild.textContent)
         }
         if (item.children[j].childElementCount > 0) {
           for (let k = 0; k < item.children[j].children.length; k++) {
-            console.log(item.children[j].children[k].firstElementChild);
-            item.children[j].children[k].firstElementChild.addEventListener("click", (e) => {
-              console.log(e.target);
-              console.log(item.firstElementChild.textContent)
-              console.log(item.children[j].children[k].firstChild.textContent);
+            item.children[j].children[k].firstElementChild.addEventListener("click", () => {
               for (const [key, value] of Object.entries(modifyProjects.projects)) {
                 if (key === item.firstElementChild.textContent) {
-                  console.log(value);
                   for (let m = 0; m < value.length; m++) {
                     if (value[m].title === item.children[j].children[k].firstChild.textContent) {
-                      console.log(value[m].title);
-                      console.log(value[m]);
-                      for (const [innerKey, innerValue] of Object.entries(value[m])) {
-                        console.log(innerValue);
-                        item.children[j].children[k].firstChild.textContent = "";
-                        let html = `<li class="inner-list-item">${value[m].title}</li><li class="inner-list-item">${value[m].description}</li><li class="inner-list-item">${value[m].dueDate}</li><li class="inner-list-item">${value[m].priority}</li><li class="inner-list-item">${value[m].notes}</li>`;
-                        item.children[j].children[k].insertAdjacentHTML("afterbegin", html)
-                        break;
-                      }
+                      item.children[j].children[k].firstChild.textContent = "";
+                      let html = `<li class="inner-list-item">
+                                      <label class="inner-list-item-label">Title:</label>
+                                      <p class="inner-list-item-p">${value[m].title}</p>
+                                    </li>
+                                    <li class="inner-list-item">
+                                      <label class="inner-list-item-label">Description:</label>
+                                      <p class="inner-list-item-p">${value[m].description}</p>
+                                    </li>
+                                    <li class="inner-list-item">
+                                      <label class="inner-list-item-label">Due Date:</label>
+                                      <p class="inner-list-item-p">${value[m].dueDate}</p>
+                                    </li>
+                                    <li class="inner-list-item">
+                                      <label class="inner-list-item-label">Priority:</label>
+                                      <p class="inner-list-item-p">${value[m].priority}</p>
+                                    </li>
+                                    <li class="inner-list-item">
+                                      <label class="inner-list-item-label">Notes:</label>
+                                      <p class="inner-list-item-p">${value[m].notes}</p>
+                                    </li>`;
+                      item.children[j].children[k].insertAdjacentHTML("afterbegin", html)
                     }
                   }
                 }
