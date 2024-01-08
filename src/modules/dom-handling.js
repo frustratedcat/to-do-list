@@ -136,8 +136,37 @@ function getLogic() {
     for (let i = 0; i < projectItems.length; i++) {
       let item = projectItems[i];
       for (let j = 0; j < item.children.length; j++) {
-        console.log(item.children[j])
-        console.log(item.children[j].childElementCount);
+        if (item.children[j].classList.contains("project-to-do-list")) {
+          console.log(item.children[j].firstElementChild.firstChild.textContent)
+        }
+        if (item.children[j].childElementCount > 0) {
+          for (let k = 0; k < item.children[j].children.length; k++) {
+            console.log(item.children[j].children[k].firstElementChild);
+            item.children[j].children[k].firstElementChild.addEventListener("click", (e) => {
+              console.log(e.target);
+              console.log(item.firstElementChild.textContent)
+              console.log(item.children[j].children[k].firstChild.textContent);
+              for (const [key, value] of Object.entries(modifyProjects.projects)) {
+                if (key === item.firstElementChild.textContent) {
+                  console.log(value);
+                  for (let m = 0; m < value.length; m++) {
+                    if (value[m].title === item.children[j].children[k].firstChild.textContent) {
+                      console.log(value[m].title);
+                      console.log(value[m]);
+                      for (const [innerKey, innerValue] of Object.entries(value[m])) {
+                        console.log(innerValue);
+                        item.children[j].children[k].firstChild.textContent = "";
+                        let html = `<li class="inner-list-item">${value[m].title}</li><li class="inner-list-item">${value[m].description}</li><li class="inner-list-item">${value[m].dueDate}</li><li class="inner-list-item">${value[m].priority}</li><li class="inner-list-item">${value[m].notes}</li>`;
+                        item.children[j].children[k].insertAdjacentHTML("afterbegin", html)
+                        break;
+                      }
+                    }
+                  }
+                }
+              }
+            })
+          }
+        }
       }
     }
   }
@@ -151,10 +180,12 @@ function getLogic() {
       // Hide form
       const addProjectForm = DefineDOMItems().addProjectForm;
       addProjectForm.classList.add("hide");
+      // Run everything
       modifyProjects.newProject(newProjectValue());
       showProjects();
       clickProjectExpand();
       addProjectOptions();
+      showToDos();
     })
   }
 
@@ -196,6 +227,7 @@ function getLogic() {
       // Show new to-dos on screen
       showProjects();
       clickProjectExpand();
+      showToDos();
     })
   }
   // Run all funcitons
