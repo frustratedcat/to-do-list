@@ -19,17 +19,7 @@ function ModifyProjects() {
     projects[projectName] = [];
     return projects;
   }
-
-  // Edit projects
-  const editProject = () => {
-  }
-
-  // Delete projects
-  function deleteProject() {
-
-  }
-
-  return { projects, newProject, editProject, deleteProject }
+  return { projects, newProject }
 }
 
 // Create toDo factory function
@@ -37,26 +27,12 @@ function createToDo(title, description, dueDate, priority, notes) {
   return { title: title, description: description, dueDate: dueDate, priority: priority, notes: notes };
 }
 
-// Add toDos
-function addToDo() {
-
-}
-
-// Edit toDos
-function editToDo() {
-
-}
-
-// Delete toDos
-function deleteToDo() {
-
-}
-
 // Add DOM div element builders
-function createDiv(pText, liText) {
+function createDiv(pText) {
   const div = document.createElement("div");
   div.classList.add("project-item");
-  div.appendChild(createH3(pText))
+  div.appendChild(createH3(pText));
+  div.appendChild(deleteProjectBtn());
   div.appendChild(btnProject());
   return div;
 }
@@ -91,11 +67,27 @@ function btnProject() {
   return btn;
 }
 
+function deleteProjectBtn() {
+  const btn = createBtn();
+  btn.textContent = "-";
+  btn.setAttribute("type", "button");
+  btn.classList.add("delete-project-btn");
+  return btn;
+}
+
 function btnToDo() {
   const btn = createBtn();
   btn.textContent = "+";
   btn.setAttribute("type", "button");
   btn.classList.add("expand-do-do-btn")
+  return btn;
+}
+
+function deleteToDoBtn() {
+  const btn = createBtn();
+  btn.textContent = "-";
+  btn.setAttribute("type", "button");
+  btn.classList.add("delete-to-do-btn");
   return btn;
 }
 
@@ -112,6 +104,7 @@ function createLi(text) {
   const li = document.createElement("li");
   li.classList.add("project-to-do");
   li.appendChild(createP(text))
+  li.appendChild(deleteToDoBtn());
   li.appendChild(btnToDo());
   return li
 }
