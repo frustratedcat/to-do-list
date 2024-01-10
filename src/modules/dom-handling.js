@@ -100,7 +100,6 @@ function newProjectValue() {
 function getLogic() {
   // Get modifyProjects 
   const modifyProjects = ModifyProjects();
-
   // Show projects on page
   const showProjects = () => {
     // Get DOM element
@@ -173,6 +172,42 @@ function getLogic() {
     }
   }
 
+  // Delete projects
+  const deleteProject = () => {
+    // Get DOM element
+    let deleteProjectBtn = document.querySelectorAll(".delete-project-btn");
+    // Add click event
+    deleteProjectBtn.forEach((i) => {
+      i.addEventListener("click", (e) => {
+        console.log(modifyProjects.projects.default);
+        for (const [key, value] of Object.entries(modifyProjects.projects)) {
+          if (e.target.previousSibling.textContent === key) {
+            console.log(key, value);
+            delete modifyProjects.projects[key];
+            console.log(modifyProjects.projects);
+            showProjects();
+            showToDos();
+            clickProjectExpand();
+            deleteToDo();
+          }
+        }
+      })
+    })
+  }
+
+  //Delete to-dos
+  const deleteToDo = () => {
+    // Get DOM element
+    let deleteToDoBtn = document.querySelectorAll(".delete-to-do-btn");
+    // Add click event
+    deleteToDoBtn.forEach((i) => {
+      i.addEventListener("click", (e) => {
+        console.log(e.target.previousSibling.textContent);
+      })
+    })
+
+  }
+
   // Submit new project form
   const submitProjectForm = () => {
     const addProjectSubmitBtn = DefineDOMItems().addProjectSubmitBtn;
@@ -188,6 +223,8 @@ function getLogic() {
       showToDos();
       clickProjectExpand();
       addProjectOptions();
+      deleteProject();
+      deleteToDo();
     })
   }
 
@@ -230,6 +267,8 @@ function getLogic() {
       showProjects();
       showToDos();
       clickProjectExpand();
+      deleteProject();
+      deleteToDo();
     })
   }
   // Run all funcitons
@@ -238,6 +277,8 @@ function getLogic() {
   submitProjectForm();
   submitToDoForm();
   addProjectOptions();
+  deleteProject();
+  deleteToDo();
 }
 
 export { clickAddProjectBtn, clickAddToDoBtn, getLogic, clickProjectExpand }
