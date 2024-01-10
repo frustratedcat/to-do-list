@@ -90,26 +90,6 @@ function clickProjectExpand() {
   }
 }
 
-// Add click event to expand btn on to-dos
-function clickToDoExpand() {
-  // Get DOM element
-  let projectItems = document.querySelectorAll(".project-item");
-  for (let i = 0; i < projectItems.length; i++) {
-    let item = projectItems[i];
-    for (let j = 0; j < item.children.length; j++) {
-      if (item.children[j].classList.contains("project-to-do-list")) {
-      }
-      if (item.children[j].childElementCount > 0) {
-        for (let k = 0; k < item.children[j].children.length; k++) {
-          item.children[j].children[k].firstElementChild.addEventListener("click", (e) => {
-            console.log(e.target);
-          })
-        }
-      }
-    }
-  }
-}
-
 // Add new project
 function newProjectValue() {
   const newProjectInput = DefineDOMItems().newProjectInput;
@@ -139,6 +119,7 @@ function getLogic() {
     return modifyProjects.projects;
   }
 
+  // Show to-dos on page
   const showToDos = () => {
     // Get DOM element
     let projectItems = document.querySelectorAll(".project-item");
@@ -149,17 +130,15 @@ function getLogic() {
         }
         if (item.children[j].childElementCount > 0) {
           for (let k = 0; k < item.children[j].children.length; k++) {
-            item.children[j].children[k].firstElementChild.addEventListener("click", () => {
-              for (const [key, value] of Object.entries(modifyProjects.projects)) {
-                if (key === item.firstElementChild.textContent) {
-                  for (let m = 0; m < value.length; m++) {
-                    if (value[m].title === item.children[j].children[k].firstChild.textContent) {
-                      item.children[j].children[k].firstChild.textContent = "";
-                      let html = `<li class="inner-list-item">
-                                      <label class="inner-list-item-label">Title:</label>
-                                      <p class="inner-list-item-p">${value[m].title}</p>
-                                    </li>
-                                    <li class="inner-list-item">
+            item.children[j].children[k].lastElementChild.addEventListener("click", () => {
+              let targetListItem = item.children[j].children[k];
+              targetListItem.classList.toggle("show-to-do-items")
+              if (targetListItem.classList.contains("show-to-do-items")) {
+                for (const [key, value] of Object.entries(modifyProjects.projects)) {
+                  if (key === item.firstElementChild.textContent) {
+                    for (let m = 0; m < value.length; m++) {
+                      if (value[m].title === targetListItem.firstElementChild.textContent) {
+                        let html = `<li class="inner-list-item">
                                       <label class="inner-list-item-label">Description:</label>
                                       <p class="inner-list-item-p">${value[m].description}</p>
                                     </li>
@@ -175,8 +154,15 @@ function getLogic() {
                                       <label class="inner-list-item-label">Notes:</label>
                                       <p class="inner-list-item-p">${value[m].notes}</p>
                                     </li>`;
-                      item.children[j].children[k].insertAdjacentHTML("afterbegin", html)
+                        item.children[j].children[k].firstElementChild.insertAdjacentHTML("beforeend", html)
+                      }
                     }
+                  }
+                }
+              } else {
+                while (targetListItem.firstElementChild.firstElementChild !== null) {
+                  if (targetListItem.firstElementChild.firstElementChild.classList.contains("inner-list-item")) {
+                    targetListItem.firstElementChild.lastChild.remove();
                   }
                 }
               }
@@ -199,10 +185,9 @@ function getLogic() {
       // Run everything
       modifyProjects.newProject(newProjectValue());
       showProjects();
+      showToDos();
       clickProjectExpand();
       addProjectOptions();
-      showToDos();
-      clickToDoExpand()
     })
   }
 
@@ -243,7 +228,6 @@ function getLogic() {
       }
       // Show new to-dos on screen
       showProjects();
-      clickProjectExpand();
       showToDos();
       clickProjectExpand();
     })
@@ -251,7 +235,6 @@ function getLogic() {
   // Run all funcitons
   showProjects();
   showToDos();
-  clickToDoExpand();
   submitProjectForm();
   submitToDoForm();
   addProjectOptions();

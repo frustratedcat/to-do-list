@@ -110,8 +110,8 @@ function createUl(text) {
 // Add DOM li element builder
 function createLi(text) {
   const li = document.createElement("li");
-  li.textContent = text;
   li.classList.add("project-to-do");
+  li.appendChild(createP(text))
   li.appendChild(btnToDo());
   return li
 }
