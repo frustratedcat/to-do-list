@@ -92,12 +92,21 @@ function clickProjectExpand() {
 
 // Add click event to expand btn on to-dos
 function clickToDoExpand() {
-  let expandToDoBtn = DefineDOMItems().expandToDoBtn;
-  for (let i = 0; i < expandToDoBtn.length; i++) {
-    expandToDoBtn[i].addEventListener("click", (e) => {
-      let target = e.target;
-
-    })
+  // Get DOM element
+  let projectItems = document.querySelectorAll(".project-item");
+  for (let i = 0; i < projectItems.length; i++) {
+    let item = projectItems[i];
+    for (let j = 0; j < item.children.length; j++) {
+      if (item.children[j].classList.contains("project-to-do-list")) {
+      }
+      if (item.children[j].childElementCount > 0) {
+        for (let k = 0; k < item.children[j].children.length; k++) {
+          item.children[j].children[k].firstElementChild.addEventListener("click", (e) => {
+            console.log(e.target);
+          })
+        }
+      }
+    }
   }
 }
 
@@ -193,6 +202,7 @@ function getLogic() {
       clickProjectExpand();
       addProjectOptions();
       showToDos();
+      clickToDoExpand()
     })
   }
 
@@ -235,11 +245,13 @@ function getLogic() {
       showProjects();
       clickProjectExpand();
       showToDos();
+      clickProjectExpand();
     })
   }
   // Run all funcitons
   showProjects();
   showToDos();
+  clickToDoExpand();
   submitProjectForm();
   submitToDoForm();
   addProjectOptions();
