@@ -114,7 +114,8 @@ function getLogic() {
       value.map((v) => { projectsContainer.lastElementChild.append(createUl(v.title)) })
     }
     // Test log to delete later
-    console.log(modifyProjects.projects)
+    console.log(modifyProjects.projects);
+    deleteProject();
     return modifyProjects.projects;
   }
 
@@ -179,7 +180,6 @@ function getLogic() {
     // Add click event
     deleteProjectBtn.forEach((i) => {
       i.addEventListener("click", (e) => {
-        console.log(modifyProjects.projects.default);
         for (const [key, value] of Object.entries(modifyProjects.projects)) {
           if (e.target.previousSibling.textContent === key) {
             console.log(key, value);
@@ -189,6 +189,7 @@ function getLogic() {
             showToDos();
             clickProjectExpand();
             deleteToDo();
+            return modifyProjects.projects;
           }
         }
       })
