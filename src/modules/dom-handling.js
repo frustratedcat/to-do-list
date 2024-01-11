@@ -196,6 +196,7 @@ function getLogic() {
             showToDos();
             clickProjectExpand();
             deleteToDo();
+            addProjectOptions();
             return modifyProjects.projects;
           }
         }
@@ -211,11 +212,12 @@ function getLogic() {
     deleteToDoBtn.forEach((i) => {
       i.addEventListener("click", (e) => {
         console.log(e.target.previousSibling.textContent);
+        console.log(e.target.previousSibling.firstChild.textContent);
         for (const [key, value] of Object.entries(modifyProjects.projects)) {
           console.log(key, value);
           for (let i = 0; i < value.length; i++) {
             console.log(value[i].title);
-            if (value[i].title === e.target.previousSibling.textContent) {
+            if (value[i].title === e.target.previousSibling.firstChild.textContent) {
               delete modifyProjects.projects[key][i];
               console.log(modifyProjects.projects);
               for (const [innerKey, innerValue] of Object.entries(modifyProjects.projects)) {
@@ -223,14 +225,13 @@ function getLogic() {
                 for (let j = 0; j < innerValue.length; j++) {
                   console.log(innerValue[j])
                   if (innerValue[j] === undefined) {
-                    console.log("yup");
-                    console.log(j);
-                    console.log(innerValue);
                     innerValue.splice(j, 1);
                     showProjects();
                     showToDos();
                     clickProjectExpand();
                     deleteProject();
+                    addProjectOptions();
+                    console.log(modifyProjects.projects);
                     return modifyProjects.projects;
                   }
                 }
@@ -240,7 +241,6 @@ function getLogic() {
         }
       })
     })
-
   }
 
   // Submit new project form
@@ -265,6 +265,7 @@ function getLogic() {
 
   // Add project options
   const addProjectOptions = () => {
+    console.log(modifyProjects.projects);
     const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
     // Remove existing options
     while (toDoProjectSelect.firstChild) {
@@ -272,6 +273,7 @@ function getLogic() {
     }
     // Add options
     for (const key of Object.keys(modifyProjects.projects)) {
+      console.log(key);
       toDoProjectSelect.append(createOption(key))
     }
   }
