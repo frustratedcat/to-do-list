@@ -115,12 +115,14 @@ function getLogic() {
     }
     // Test log to delete later
     console.log(modifyProjects.projects);
+    deleteToDo();
     deleteProject();
     return modifyProjects.projects;
   }
 
   // Show to-dos on page
   const showToDos = () => {
+    console.log(modifyProjects.projects);
     // Get DOM element
     let projectItems = document.querySelectorAll(".project-item");
     for (let i = 0; i < projectItems.length; i++) {
@@ -137,6 +139,7 @@ function getLogic() {
                 for (const [key, value] of Object.entries(modifyProjects.projects)) {
                   if (key === item.firstElementChild.textContent) {
                     for (let m = 0; m < value.length; m++) {
+                      console.log(value[m])
                       if (value[m].title === targetListItem.firstElementChild.textContent) {
                         let html = `<li class="inner-list-item">
                                       <label class="inner-list-item-label">Description:</label>
@@ -155,6 +158,8 @@ function getLogic() {
                                       <p class="inner-list-item-p">${value[m].notes}</p>
                                     </li>`;
                         item.children[j].children[k].firstElementChild.insertAdjacentHTML("beforeend", html)
+                        deleteToDo();
+                        deleteProject();
                       }
                     }
                   }
@@ -163,6 +168,8 @@ function getLogic() {
                 while (targetListItem.firstElementChild.firstElementChild !== null) {
                   if (targetListItem.firstElementChild.firstElementChild.classList.contains("inner-list-item")) {
                     targetListItem.firstElementChild.lastChild.remove();
+                    deleteToDo();
+                    deleteProject();
                   }
                 }
               }
@@ -204,6 +211,33 @@ function getLogic() {
     deleteToDoBtn.forEach((i) => {
       i.addEventListener("click", (e) => {
         console.log(e.target.previousSibling.textContent);
+        for (const [key, value] of Object.entries(modifyProjects.projects)) {
+          console.log(key, value);
+          for (let i = 0; i < value.length; i++) {
+            console.log(value[i].title);
+            if (value[i].title === e.target.previousSibling.textContent) {
+              delete modifyProjects.projects[key][i];
+              console.log(modifyProjects.projects);
+              for (const [innerKey, innerValue] of Object.entries(modifyProjects.projects)) {
+                console.log(innerKey, innerValue);
+                for (let j = 0; j < innerValue.length; j++) {
+                  console.log(innerValue[j])
+                  if (innerValue[j] === undefined) {
+                    console.log("yup");
+                    console.log(j);
+                    console.log(innerValue);
+                    innerValue.splice(j, 1);
+                    showProjects();
+                    showToDos();
+                    clickProjectExpand();
+                    deleteProject();
+                    return modifyProjects.projects;
+                  }
+                }
+              }
+            }
+          }
+        }
       })
     })
 
