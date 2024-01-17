@@ -4,7 +4,7 @@ function createProject() {
 
   // Check if projects object is empty
   if (Object.keys(projects).length === 0) {
-    Object.assign(projects, { default: [] })
+    Object.assign(projects, { Default: [] })
   }
   return { projects }
 }
