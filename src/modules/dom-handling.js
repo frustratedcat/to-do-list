@@ -239,8 +239,11 @@ function getLogic() {
       // Hide form
       const addProjectForm = DefineDOMItems().addProjectForm;
       addProjectForm.classList.add("hide");
+      // Check for input
+      if (newProjectValue() !== "") {
+        modifyProjects.newProject(newProjectValue());
+      }
       // Run everything
-      modifyProjects.newProject(newProjectValue());
       showProjects();
       showToDos();
       clickProjectExpand();
@@ -278,12 +281,15 @@ function getLogic() {
       const newToDoDueDate = DefineDOMItems().newToDoDueDate;
       const newToDoPriority = DefineDOMItems().newToDoPriority;
       const newToDoNotes = DefineDOMItems().newToDoNotes;
-      // Add to-dos
-      for (const [key, value] of Object.entries(modifyProjects.projects)) {
-        if (key === toDoProjectSelect.value) {
-          value.push(createToDo(newToDoTitle.value, newToDoDescription.value, newToDoDueDate.value, newToDoPriority.value, newToDoNotes.value));
 
+      if (newToDoTitle.value !== "") {
+        // Add to-dos
+        for (const [key, value] of Object.entries(modifyProjects.projects)) {
+          if (key === toDoProjectSelect.value) {
+            value.push(createToDo(newToDoTitle.value, newToDoDescription.value, newToDoDueDate.value, newToDoPriority.value, newToDoNotes.value));
+          }
         }
+
       }
       // Show new to-dos on screen
       showProjects();
