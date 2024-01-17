@@ -34,7 +34,6 @@ function DefineDOMItems() {
 function clickAddProjectBtn() {
   const addProjectBtn = DefineDOMItems().addProjectBtn;
   addProjectBtn.addEventListener("click", (e) => {
-    console.log(e.target);
     // Show projects form modal
     const addProjectForm = DefineDOMItems().addProjectForm;
     addProjectForm.classList.remove("hide");
@@ -51,7 +50,6 @@ function clickAddProjectBtn() {
 function clickAddToDoBtn() {
   const addToDoBtn = DefineDOMItems().addToDoBtn;
   addToDoBtn.addEventListener("click", (e) => {
-    console.log(e.target);
     // Show To-Do form modal
     const addToDoForm = DefineDOMItems().addToDoForm;
     addToDoForm.classList.remove("hide");
@@ -114,7 +112,6 @@ function getLogic() {
       value.map((v) => { projectsContainer.lastElementChild.append(createUl(v.title)) })
     }
     // Test log to delete later
-    console.log(modifyProjects.projects);
     deleteToDo();
     deleteProject();
     localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
@@ -123,7 +120,6 @@ function getLogic() {
 
   // Show to-dos on page
   const showToDos = () => {
-    console.log(modifyProjects.projects);
     // Get DOM element
     let projectItems = document.querySelectorAll(".project-item");
     for (let i = 0; i < projectItems.length; i++) {
@@ -140,7 +136,6 @@ function getLogic() {
                 for (const [key, value] of Object.entries(modifyProjects.projects)) {
                   if (key === item.firstElementChild.textContent) {
                     for (let m = 0; m < value.length; m++) {
-                      console.log(value[m])
                       if (value[m].title === targetListItem.firstElementChild.textContent) {
                         let html = `<li class="inner-list-item">
                                       <label class="inner-list-item-label">Description:</label>
@@ -190,9 +185,7 @@ function getLogic() {
       i.addEventListener("click", (e) => {
         for (const [key, value] of Object.entries(modifyProjects.projects)) {
           if (e.target.previousSibling.textContent === key) {
-            console.log(key, value);
             delete modifyProjects.projects[key];
-            console.log(modifyProjects.projects);
             showProjects();
             showToDos();
             clickProjectExpand();
@@ -213,19 +206,12 @@ function getLogic() {
     // Add click event
     deleteToDoBtn.forEach((i) => {
       i.addEventListener("click", (e) => {
-        console.log(e.target.previousSibling.textContent);
-        console.log(e.target.previousSibling.firstChild.textContent);
         for (const [key, value] of Object.entries(modifyProjects.projects)) {
-          console.log(key, value);
           for (let i = 0; i < value.length; i++) {
-            console.log(value[i].title);
             if (value[i].title === e.target.previousSibling.firstChild.textContent) {
               delete modifyProjects.projects[key][i];
-              console.log(modifyProjects.projects);
               for (const [innerKey, innerValue] of Object.entries(modifyProjects.projects)) {
-                console.log(innerKey, innerValue);
                 for (let j = 0; j < innerValue.length; j++) {
-                  console.log(innerValue[j])
                   if (innerValue[j] === undefined) {
                     innerValue.splice(j, 1);
                     showProjects();
@@ -233,7 +219,6 @@ function getLogic() {
                     clickProjectExpand();
                     deleteProject();
                     addProjectOptions();
-                    console.log(modifyProjects.projects);
                     localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
                     return modifyProjects.projects;
                   }
@@ -250,7 +235,6 @@ function getLogic() {
   const submitProjectForm = () => {
     const addProjectSubmitBtn = DefineDOMItems().addProjectSubmitBtn;
     addProjectSubmitBtn.addEventListener("click", (e) => {
-      console.log(e.target);
       e.preventDefault();
       // Hide form
       const addProjectForm = DefineDOMItems().addProjectForm;
@@ -268,7 +252,6 @@ function getLogic() {
 
   // Add project options
   const addProjectOptions = () => {
-    console.log(modifyProjects.projects);
     const toDoProjectSelect = DefineDOMItems().toDoProjectSelect;
     // Remove existing options
     while (toDoProjectSelect.firstChild) {
@@ -276,7 +259,6 @@ function getLogic() {
     }
     // Add options
     for (const key of Object.keys(modifyProjects.projects)) {
-      console.log(key);
       toDoProjectSelect.append(createOption(key))
     }
   }
@@ -285,7 +267,6 @@ function getLogic() {
   const submitToDoForm = () => {
     const addToDoSubmitBtn = DefineDOMItems().addToDoSubmitBtn;
     addToDoSubmitBtn.addEventListener("click", (e) => {
-      console.log(e.target);
       e.preventDefault();
       // Hide form
       const addToDoForm = DefineDOMItems().addToDoForm;

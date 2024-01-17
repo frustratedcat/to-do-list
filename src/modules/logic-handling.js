@@ -14,12 +14,10 @@ function ModifyProjects() {
   // Set projects based on local storage 
   let projects;
   if (localStorage.length === 0) {
-    console.log("local storage is clear")
     projects = createProject().projects;
     localStorage.setItem("projects", JSON.stringify(projects));
   } else {
     projects = JSON.parse(localStorage.getItem("projects"));
-    console.log(projects);
   }
   // Create new projects
   const newProject = (projectName) => {
