@@ -4,16 +4,23 @@ function createProject() {
 
   // Check if projects object is empty
   if (Object.keys(projects).length === 0) {
-    Object.assign(projects, { default: [{ title: "hi", description: "describe", dueDate: "idk", priority: "high", notes: "nope" }, { title: "yo" }] })
-    Object.assign(projects, { test: [{ title: "hey" }, { title: "bro" }] })
+    Object.assign(projects, { default: [] })
   }
   return { projects }
 }
 
 // Add/Edit/Delete projects
 function ModifyProjects() {
-  const projects = createProject().projects;
-
+  // Set projects based on local storage 
+  let projects;
+  if (localStorage.length === 0) {
+    console.log("local storage is clear")
+    projects = createProject().projects;
+    localStorage.setItem("projects", JSON.stringify(projects));
+  } else {
+    projects = JSON.parse(localStorage.getItem("projects"));
+    console.log(projects);
+  }
   // Create new projects
   const newProject = (projectName) => {
     projects[projectName] = [];
@@ -41,7 +48,7 @@ function createDiv(pText) {
 function createH3(text) {
   const h3 = document.createElement("h3");
   h3.textContent = text;
-  h3.classList.add("project-text");
+  h3.classList.add("project-h3-text");
   return h3;
 }
 
@@ -79,7 +86,7 @@ function btnToDo() {
   const btn = createBtn();
   btn.textContent = "+";
   btn.setAttribute("type", "button");
-  btn.classList.add("expand-do-do-btn")
+  btn.classList.add("expand-to-do-btn")
   return btn;
 }
 

@@ -117,6 +117,7 @@ function getLogic() {
     console.log(modifyProjects.projects);
     deleteToDo();
     deleteProject();
+    localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
     return modifyProjects.projects;
   }
 
@@ -197,6 +198,7 @@ function getLogic() {
             clickProjectExpand();
             deleteToDo();
             addProjectOptions();
+            localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
             return modifyProjects.projects;
           }
         }
@@ -232,6 +234,7 @@ function getLogic() {
                     deleteProject();
                     addProjectOptions();
                     console.log(modifyProjects.projects);
+                    localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
                     return modifyProjects.projects;
                   }
                 }
@@ -297,7 +300,8 @@ function getLogic() {
       // Add to-dos
       for (const [key, value] of Object.entries(modifyProjects.projects)) {
         if (key === toDoProjectSelect.value) {
-          value.push(createToDo(newToDoTitle.value, newToDoDescription.value, newToDoDueDate.value, newToDoPriority.value, newToDoNotes.value))
+          value.push(createToDo(newToDoTitle.value, newToDoDescription.value, newToDoDueDate.value, newToDoPriority.value, newToDoNotes.value));
+
         }
       }
       // Show new to-dos on screen
@@ -306,6 +310,7 @@ function getLogic() {
       clickProjectExpand();
       deleteProject();
       deleteToDo();
+      localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
     })
   }
   // Run all funcitons
