@@ -104,6 +104,13 @@ body {
   margin: 50px auto;
 }
 
+button {
+  border: 2px solid var(--light-gray);
+  background: var(--dark-gray);
+  color: var(--light-gray);
+  transition: transform 0.3s;
+}
+
 #add-project-btn, #add-to-do-btn {
   display: flex;
   justify-content: center;
@@ -111,19 +118,22 @@ body {
   margin: 0 40px;
   height: 50px;
   width: 100px;
-  border: 2px solid var(--dark-gray);
-  background: var(--dark-gray);
-  color: var(--light-gray);
   font-size: .9rem;
   font-weight: 500;
   border-radius: 10px;
-  box-shadow: 1px 1px 10px 2px var(--light-gray);
   font-family: inherit;
-  transition: box-shadow 0.7s ease;
 }
 
-#add-project-btn:hover, #add-project-btn:focus, #add-to-do-btn:hover, #add-to-do-btn:focus {
+button:hover, button:focus {
+  border-color: var(--dark-gray);
   box-shadow: inset 1px 1px 40px 3px var(--light-gray-faded), 1px 1px 10px 7px var(--light-gray);
+  transform: scale(1.1);
+}
+
+button:active {
+  background: var(--dark-blue);
+  border-color: var(--dark-blue);
+  transform: scale(1);
 }
 
 #add-project-form, #add-to-do-form {
@@ -133,37 +143,86 @@ body {
   transform: translate(-50%, 0);
   width: 390px;
   height: 500px;
-  background: white;
-  border: 2px solid black;
+  background: var(--dark-gray);
+  border: 2px solid var(--light-gray);
+  color: var(--light-gray);
+}
+
+form {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
 }
 
 .form-styling {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  border: none;
+  padding: 0 20px;
+}
+
+legend {
+  width: 100%;
+  text-align: center;
+  margin: 40px auto;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.input-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .form-label {
   margin-bottom: 10px;
+  font-size: 1.2rem;
 }
 
 .form-input {
   margin-bottom: 20px;
+  padding: 2px 5px;
+  background: var(--light-gray);
+  color: var(--dark-blue);
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+#add-project-submit-btn, #add-to-do-submit-btn {
+  height: 50px;
+  width: 100px;
+  border-radius: 10px;
+}
+
+#add-project-submit-btn {
+  margin-top: 20px;
+}
+
+#add-to-do-submit-btn {
+  margin: 10px;
 }
 
 #projects-section {
   width: 390px;
   height: 500px;
-  padding: 10px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
   border: 2px solid var(--light-gray);
+  border-radius: 10px;
   background: var(--dark-gray);
   color: var(--light-gray);
+  overflow: scroll;
 }
 
 #projects-section > h2 {
   text-align: center;
   margin: 20px auto;
+  font-size: 1.8rem;
 }
 
 #projects-container {
@@ -177,7 +236,6 @@ body {
   padding: 20px;
   display: grid;
   grid-template-columns: 2fr repeat(2, 1fr);
-  border: 2px solid var(--light-gray);
 }
 
 .project-h3-text {
@@ -192,9 +250,6 @@ body {
   height: 40px;
   width: 40px;
   margin-left: auto;
-  border: 2px solid var(--light-gray);
-  background: var(--dark-gray);
-  color: var(--light-gray);
   font-family: inherit;
   font-size: 1.5rem;
   font-weight: 500;
@@ -215,7 +270,8 @@ body {
   width: 100%;
   grid-column: 1 / 4;
   padding: 10px;
-  border: 2px solid black;
+  border: 2px solid var(--light-gray);
+  border-radius: 10px;
   margin: 10px auto;
 }
 
