@@ -19,13 +19,13 @@
     </section>
 
     <section id="projects-section">
-      <h2>Projects</h2>
+      <h2>PROJECTS</h2>
       <div id="projects-container">
       </div>
     </section>
 
     <form action="/" method="get" id="add-project-form" class="hide">
-      <fieldset class="form-stlying">
+      <fieldset class="form-styling">
         <legend>Add Project</legend>
         <label for="new-project-input" class="form-label">New Project</label>
         <input type="text" name="new-project-input" value="" id="new-project-input" class="form-input" required>
@@ -38,27 +38,39 @@
       <fieldset class="form-styling">
         <legend>Add To-Do</legend>
 
-        <label for="to-do-project-select" class="form-label">Project</label>
-        <select id="to-do-project-select" class="form-input"></select>
+        <div class="input-container">
+          <label for="to-do-project-select" class="form-label">Project</label>
+          <select id="to-do-project-select" class="form-input"></select>
+        </div>
 
-        <label for="new-to-do-title" class="form-label">Title</label>
-        <input type="text" name="new-to-do-title" id="new-to-do-title" value="" class="form-input" required>
+        <div class="input-container">
+          <label for="new-to-do-title" class="form-label">Title</label>
+          <input type="text" name="new-to-do-title" id="new-to-do-title" value="" class="form-input" required>
+        </div>
 
-        <label for="new-to-do-description" class="form-label">Description</label>
-        <input type="text" name="new-to-do-description" id="new-to-do-description" value="" class="form-input" required>
+        <div class="input-container">
+          <label for="new-to-do-description" class="form-label">Description</label>
+          <input type="text" name="new-to-do-description" id="new-to-do-description" value="" class="form-input" required>
+        </div>
 
-        <label for="new-to-do-due-date" class="form-label">Due Date</label>
-        <input type="text" name="new-to-do-due-date" id="new-to-do-due-date" value="" class="form-input" requred>
+        <div class="input-container">
+          <label for="new-to-do-due-date" class="form-label">Due Date</label>
+          <input type="text" name="new-to-do-due-date" id="new-to-do-due-date" value="" class="form-input" requred>
+        </div>
 
-        <label for="new-to-do-priority" class="form-label">Priority</label>
-        <select id="new-to-do-priority" class="form-input">
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-        </select>
+        <div class="input-container">
+          <label for="new-to-do-priority" class="form-label">Priority</label>
+          <select id="new-to-do-priority" class="form-input">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
 
-        <label for="new-to-do-notes" class="form-label">Notes</label>
-        <input type="text" name="new-to-do-notes" id="new-to-do-notes" value="" class="form-input" required>
+        <div class="input-container">
+          <label for="new-to-do-notes" class="form-label">Notes</label>
+          <input type="text" name="new-to-do-notes" id="new-to-do-notes" value="" class="form-input" required>
+        </div>
       </fieldset>
 
       <button type="submit" id="add-to-do-submit-btn">Add To-Do</button>
