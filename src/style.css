@@ -145,6 +145,7 @@ button:active {
   height: 500px;
   background: var(--dark-gray);
   border: 2px solid var(--light-gray);
+  border-radius: 10px;
   color: var(--light-gray);
 }
 
