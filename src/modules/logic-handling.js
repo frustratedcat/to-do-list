@@ -4,14 +4,14 @@ function createProject() {
 
   // Check if projects object is empty
   if (Object.keys(projects).length === 0) {
-    Object.assign(projects, { Default: [] })
+    Object.assign(projects, { Default: [] });
   }
-  return { projects }
+  return { projects };
 }
 
 // Add/Edit/Delete projects
 function ModifyProjects() {
-  // Set projects based on local storage 
+  // Set projects based on local storage
   let projects;
   if (localStorage.length === 0) {
     projects = createProject().projects;
@@ -23,13 +23,19 @@ function ModifyProjects() {
   const newProject = (projectName) => {
     projects[projectName] = [];
     return projects;
-  }
-  return { projects, newProject }
+  };
+  return { projects, newProject };
 }
 
 // Create toDo factory function
 function createToDo(title, description, dueDate, priority, notes) {
-  return { title: title, description: description, dueDate: dueDate, priority: priority, notes: notes };
+  return {
+    title: title,
+    description: description,
+    dueDate: dueDate,
+    priority: priority,
+    notes: notes,
+  };
 }
 
 // Add DOM div element builders
@@ -42,7 +48,7 @@ function createDiv(pText) {
   return div;
 }
 
-// Add DOM h3 element builder 
+// Add DOM h3 element builder
 function createH3(text) {
   const h3 = document.createElement("h3");
   h3.textContent = text;
@@ -68,7 +74,7 @@ function btnProject() {
   const btn = createBtn();
   btn.textContent = "+";
   btn.setAttribute("type", "button");
-  btn.classList.add("expand-project-btn")
+  btn.classList.add("expand-project-btn");
   return btn;
 }
 
@@ -84,7 +90,7 @@ function btnToDo() {
   const btn = createBtn();
   btn.textContent = "+";
   btn.setAttribute("type", "button");
-  btn.classList.add("expand-to-do-btn")
+  btn.classList.add("expand-to-do-btn");
   return btn;
 }
 
@@ -100,7 +106,7 @@ function deleteToDoBtn() {
 function createUl(text) {
   const ul = document.createElement("ul");
   ul.classList.add("project-to-do-list", "hide");
-  ul.appendChild(createLi(text))
+  ul.appendChild(createLi(text));
   return ul;
 }
 
@@ -108,10 +114,10 @@ function createUl(text) {
 function createLi(text) {
   const li = document.createElement("li");
   li.classList.add("project-to-do");
-  li.appendChild(createP(text))
+  li.appendChild(createP(text));
   li.appendChild(deleteToDoBtn());
   li.appendChild(btnToDo());
-  return li
+  return li;
 }
 
 // Add DOM option element builder
@@ -123,4 +129,11 @@ function createOption(text) {
   return option;
 }
 
-export { createToDo, createProject, ModifyProjects, createDiv, createUl, createOption }
+export {
+  createToDo,
+  createProject,
+  ModifyProjects,
+  createDiv,
+  createUl,
+  createOption,
+};

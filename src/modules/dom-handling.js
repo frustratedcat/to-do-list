@@ -1,5 +1,11 @@
 // Import functions
-import { createToDo, ModifyProjects, createDiv, createUl, createOption } from "./logic-handling";
+import {
+  createToDo,
+  ModifyProjects,
+  createDiv,
+  createUl,
+  createOption,
+} from "./logic-handling";
 
 // Define all DOM objects
 function DefineDOMItems() {
@@ -26,9 +32,24 @@ function DefineDOMItems() {
   const newToDoPriority = document.getElementById("new-to-do-priority");
   const newToDoNotes = document.getElementById("new-to-do-notes");
   // Return all
-  return { addProjectForm, addToDoForm, addProjectBtn, addToDoBtn, addProjectSubmitBtn, addToDoSubmitBtn, newProjectInput, projectsContainer, expandProjectBtn, toDoProjectSelect, newToDoTitle, newToDoDescription, newToDoDueDate, newToDoPriority, newToDoNotes }
+  return {
+    addProjectForm,
+    addToDoForm,
+    addProjectBtn,
+    addToDoBtn,
+    addProjectSubmitBtn,
+    addToDoSubmitBtn,
+    newProjectInput,
+    projectsContainer,
+    expandProjectBtn,
+    toDoProjectSelect,
+    newToDoTitle,
+    newToDoDescription,
+    newToDoDueDate,
+    newToDoPriority,
+    newToDoNotes,
+  };
 }
-
 
 // Add click event to add-project-btn
 function clickAddProjectBtn() {
@@ -43,7 +64,7 @@ function clickAddProjectBtn() {
     // Remove project form input values
     const newProjectInput = DefineDOMItems().newProjectInput;
     newProjectInput.value = "";
-  })
+  });
 }
 
 // Add click event to add-to-do-btn
@@ -69,7 +90,7 @@ function clickAddToDoBtn() {
     newToDoDueDate.value = "";
     newToDoPriority.value = "";
     newToDoNotes.value = "";
-  })
+  });
 }
 
 // Add click event to expand btn on projects
@@ -84,7 +105,7 @@ function clickProjectExpand() {
         targetSibling.classList.toggle("hide");
         targetSibling = targetSibling.nextElementSibling;
       }
-    })
+    });
   }
 }
 
@@ -96,7 +117,7 @@ function newProjectValue() {
 
 // Get logic
 function getLogic() {
-  // Get modifyProjects 
+  // Get modifyProjects
   const modifyProjects = ModifyProjects();
   // Show projects on page
   const showProjects = () => {
@@ -109,14 +130,16 @@ function getLogic() {
     // Show projects on page
     for (const [key, value] of Object.entries(modifyProjects.projects)) {
       projectsContainer.append(createDiv(key));
-      value.map((v) => { projectsContainer.lastElementChild.append(createUl(v.title)) })
+      value.map((v) => {
+        projectsContainer.lastElementChild.append(createUl(v.title));
+      });
     }
     // Test log to delete later
     deleteToDo();
     deleteProject();
     localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
     return modifyProjects.projects;
-  }
+  };
 
   // Show to-dos on page
   const showToDos = () => {
@@ -129,15 +152,22 @@ function getLogic() {
         }
         if (item.children[j].childElementCount > 0) {
           for (let k = 0; k < item.children[j].children.length; k++) {
-            item.children[j].children[k].lastElementChild.addEventListener("click", () => {
-              let targetListItem = item.children[j].children[k];
-              targetListItem.classList.toggle("show-to-do-items")
-              if (targetListItem.classList.contains("show-to-do-items")) {
-                for (const [key, value] of Object.entries(modifyProjects.projects)) {
-                  if (key === item.firstElementChild.textContent) {
-                    for (let m = 0; m < value.length; m++) {
-                      if (value[m].title === targetListItem.firstElementChild.textContent) {
-                        let html = `<li class="inner-list-item">
+            item.children[j].children[k].lastElementChild.addEventListener(
+              "click",
+              () => {
+                let targetListItem = item.children[j].children[k];
+                targetListItem.classList.toggle("show-to-do-items");
+                if (targetListItem.classList.contains("show-to-do-items")) {
+                  for (const [key, value] of Object.entries(
+                    modifyProjects.projects,
+                  )) {
+                    if (key === item.firstElementChild.textContent) {
+                      for (let m = 0; m < value.length; m++) {
+                        if (
+                          value[m].title ===
+                          targetListItem.firstElementChild.textContent
+                        ) {
+                          let html = `<li class="inner-list-item">
                                       <label class="inner-list-item-label">Description:</label>
                                       <p class="inner-list-item-p">${value[m].description}</p>
                                     </li>
@@ -153,28 +183,40 @@ function getLogic() {
                                       <label class="inner-list-item-label">Notes:</label>
                                       <p class="inner-list-item-p">${value[m].notes}</p>
                                     </li>`;
-                        item.children[j].children[k].firstElementChild.insertAdjacentHTML("beforeend", html)
-                        deleteToDo();
-                        deleteProject();
+                          item.children[j].children[
+                            k
+                          ].firstElementChild.insertAdjacentHTML(
+                            "beforeend",
+                            html,
+                          );
+                          deleteToDo();
+                          deleteProject();
+                        }
                       }
                     }
                   }
-                }
-              } else {
-                while (targetListItem.firstElementChild.firstElementChild !== null) {
-                  if (targetListItem.firstElementChild.firstElementChild.classList.contains("inner-list-item")) {
-                    targetListItem.firstElementChild.lastChild.remove();
-                    deleteToDo();
-                    deleteProject();
+                } else {
+                  while (
+                    targetListItem.firstElementChild.firstElementChild !== null
+                  ) {
+                    if (
+                      targetListItem.firstElementChild.firstElementChild.classList.contains(
+                        "inner-list-item",
+                      )
+                    ) {
+                      targetListItem.firstElementChild.lastChild.remove();
+                      deleteToDo();
+                      deleteProject();
+                    }
                   }
                 }
-              }
-            })
+              },
+            );
           }
         }
       }
     }
-  }
+  };
 
   // Delete projects
   const deleteProject = () => {
@@ -191,13 +233,16 @@ function getLogic() {
             clickProjectExpand();
             deleteToDo();
             addProjectOptions();
-            localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
+            localStorage.setItem(
+              "projects",
+              JSON.stringify(modifyProjects.projects),
+            );
             return modifyProjects.projects;
           }
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   //Delete to-dos
   const deleteToDo = () => {
@@ -208,9 +253,13 @@ function getLogic() {
       i.addEventListener("click", (e) => {
         for (const [key, value] of Object.entries(modifyProjects.projects)) {
           for (let i = 0; i < value.length; i++) {
-            if (value[i].title === e.target.previousSibling.firstChild.textContent) {
+            if (
+              value[i].title === e.target.previousSibling.firstChild.textContent
+            ) {
               delete modifyProjects.projects[key][i];
-              for (const [innerKey, innerValue] of Object.entries(modifyProjects.projects)) {
+              for (const [innerKey, innerValue] of Object.entries(
+                modifyProjects.projects,
+              )) {
                 for (let j = 0; j < innerValue.length; j++) {
                   if (innerValue[j] === undefined) {
                     innerValue.splice(j, 1);
@@ -219,7 +268,10 @@ function getLogic() {
                     clickProjectExpand();
                     deleteProject();
                     addProjectOptions();
-                    localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
+                    localStorage.setItem(
+                      "projects",
+                      JSON.stringify(modifyProjects.projects),
+                    );
                     return modifyProjects.projects;
                   }
                 }
@@ -227,9 +279,9 @@ function getLogic() {
             }
           }
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   // Submit new project form
   const submitProjectForm = () => {
@@ -250,8 +302,8 @@ function getLogic() {
       addProjectOptions();
       deleteProject();
       deleteToDo();
-    })
-  }
+    });
+  };
 
   // Add project options
   const addProjectOptions = () => {
@@ -262,11 +314,11 @@ function getLogic() {
     }
     // Add options
     for (const key of Object.keys(modifyProjects.projects)) {
-      toDoProjectSelect.append(createOption(key))
+      toDoProjectSelect.append(createOption(key));
     }
-  }
+  };
 
-  // Submit new to-do form 
+  // Submit new to-do form
   const submitToDoForm = () => {
     const addToDoSubmitBtn = DefineDOMItems().addToDoSubmitBtn;
     addToDoSubmitBtn.addEventListener("click", (e) => {
@@ -286,10 +338,17 @@ function getLogic() {
         // Add to-dos
         for (const [key, value] of Object.entries(modifyProjects.projects)) {
           if (key === toDoProjectSelect.value) {
-            value.push(createToDo(newToDoTitle.value, newToDoDescription.value, newToDoDueDate.value, newToDoPriority.value, newToDoNotes.value));
+            value.push(
+              createToDo(
+                newToDoTitle.value,
+                newToDoDescription.value,
+                newToDoDueDate.value,
+                newToDoPriority.value,
+                newToDoNotes.value,
+              ),
+            );
           }
         }
-
       }
       // Show new to-dos on screen
       showProjects();
@@ -298,8 +357,8 @@ function getLogic() {
       deleteProject();
       deleteToDo();
       localStorage.setItem("projects", JSON.stringify(modifyProjects.projects));
-    })
-  }
+    });
+  };
   // Run all funcitons
   showProjects();
   showToDos();
@@ -310,4 +369,4 @@ function getLogic() {
   deleteToDo();
 }
 
-export { clickAddProjectBtn, clickAddToDoBtn, getLogic, clickProjectExpand }
+export { clickAddProjectBtn, clickAddToDoBtn, getLogic, clickProjectExpand };

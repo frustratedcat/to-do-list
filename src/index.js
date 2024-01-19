@@ -1,6 +1,11 @@
 "use strict";
 
-import { clickAddProjectBtn, clickAddToDoBtn, clickProjectExpand, getLogic } from "./modules/dom-handling";
+import {
+  clickAddProjectBtn,
+  clickAddToDoBtn,
+  clickProjectExpand,
+  getLogic,
+} from "./modules/dom-handling";
 import "./style.css";
 
 function run() {
@@ -42,17 +47,3 @@ if (storageAvailable("localStorage")) {
 } else {
   console.log("No storage available");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
